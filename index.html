@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>致近萧晴 · 一封藏了很久的信</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23ff5e8a' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/></svg>" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ==================== 密码锁屏 ==================== -->
+  <div id="lock-screen">
+    <canvas id="lock-canvas" aria-hidden="true"></canvas>
+
+    <div class="lock-stage">
+      <div class="lock-card" id="lock-card">
+        <div class="lock-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="30" height="30">
+            <path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
+
+        <p class="lock-eyebrow">A LOVE LETTER · 专属来信</p>
+        <h1 class="lock-title">这里有一封<br />写给 <span class="gradient-text">你</span> 的信</h1>
+        <p class="lock-sub">这封信只属于一个人，输入专属密码开启</p>
+
+        <div class="input-row">
+          <div class="input-wrap" id="input-wrap">
+            <input id="pwd" type="password" placeholder="专属密码" autocomplete="off" maxlength="20" />
+            <button id="toggle-pwd" type="button" aria-label="显示或隐藏密码">👁</button>
+          </div>
+          <button id="unlock-btn" class="btn-primary" type="button">开启心意</button>
+        </div>
+
+        <p class="lock-hint">💡 提示：她名字的拼音缩写 + 最浪漫的三个数字</p>
+        <p class="lock-error" id="lock-error" aria-live="polite"></p>
+      </div>
+
+      <p class="lock-footer">—— 仅对 <b>近萧晴</b> 可见 ——</p>
+    </div>
+  </div>
+
+  <!-- ==================== 主内容 ==================== -->
+  <main id="main" hidden>
+    <canvas id="fx-canvas" aria-hidden="true"></canvas>
+
+    <div class="aurora" aria-hidden="true">
+      <span class="blob b1"></span>
+      <span class="blob b2"></span>
+      <span class="blob b3"></span>
+    </div>
+
+    <!-- 英雄区 -->
+    <header class="hero">
+      <span class="deco deco-1" aria-hidden="true">✦</span>
+      <span class="deco deco-2" aria-hidden="true">❤</span>
+      <span class="deco deco-3" aria-hidden="true">✧</span>
+      <span class="deco deco-4" aria-hidden="true">❤</span>
+
+      <div class="hero-inner">
+        <p class="hero-eyebrow reveal d1">✦ TO · 近萧晴 ✦</p>
+        <h1 class="hero-name reveal d2">亲爱的 <span class="gradient-text">近萧晴</span></h1>
+
+        <div class="typewriter reveal d3">
+          <span id="type-text"></span><span class="caret" aria-hidden="true"></span>
+        </div>
+
+        <p class="hero-note reveal d4">往下滚动，还有话对你说 ↓</p>
+      </div>
+    </header>
+
+    <!-- 语录卡片 -->
+    <section class="quotes">
+      <h2 class="section-title reveal">— 想说给你听的话 —</h2>
+      <div class="quote-grid">
+        <article class="quote-card reveal d1">
+          <div class="quote-icon" aria-hidden="true">💌</div>
+          <span class="quote-tag">心动瞬间</span>
+          <p>我没什么特别的，<em>就是特别喜欢你</em>。</p>
+        </article>
+        <article class="quote-card reveal d2">
+          <div class="quote-icon" aria-hidden="true">🌊</div>
+          <span class="quote-tag">山海为证</span>
+          <p>我的爱藏在风里，风吹过山川湖海，<em>只为遇见你</em>。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 回忆相册 -->
+    <section class="gallery">
+      <h2 class="section-title reveal">— 我们的回忆碎片 —</h2>
+      <div class="polaroid-row">
+        <div class="reveal d1">
+          <figure class="polaroid tilt-l">
+            <span class="tape" aria-hidden="true"></span>
+            <div class="polaroid-img"><img src="A.jpg" alt="老君山许愿牌" loading="lazy" /></div>
+            <figcaption>
+              <span class="polaroid-note">山高祈安 · 风暖纳福</span>
+              <span class="polaroid-date">2026.08.27 · 老君山</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="reveal d2">
+          <figure class="polaroid tilt-r">
+            <span class="tape" aria-hidden="true"></span>
+            <div class="polaroid-img"><img src="B.jpg" alt="山顶比耶与许愿牌" loading="lazy" /></div>
+            <figcaption>
+              <span class="polaroid-note">心之所想 · 岁之所及</span>
+              <span class="polaroid-date">2026.08.27 · 老君山</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="reveal d3">
+          <figure class="polaroid tilt-l2">
+            <span class="tape" aria-hidden="true"></span>
+            <div class="polaroid-img"><img src="C.jpg" alt="认真的温柔瞬间" loading="lazy" /></div>
+            <figcaption>
+              <span class="polaroid-note">你认真的样子最好看</span>
+              <span class="polaroid-date">2026.08.27 · 老君山</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 天下第一 -->
+    <section class="champion reveal">
+      <div class="crown" aria-hidden="true">👑</div>
+      <div class="champion-banner">
+        <span>老婆天下第一好！</span>
+      </div>
+      <p class="champion-sub">全宇宙唯一 · 永久有效</p>
+    </section>
+
+    <!-- 彩蛋 -->
+    <div class="gift reveal">
+      <button id="surprise-btn" class="btn-gift" type="button">🎁 拆开最后一份心意</button>
+    </div>
+
+    <footer class="footer">
+      <p>以星辰为证 · 以山海为聘</p>
+      <p class="footer-heart">❤ 风里全是我喜欢你 ❤</p>
+    </footer>
+  </main>
+
+  <!-- ==================== 惊喜弹层 ==================== -->
+  <div id="surprise" hidden>
+    <div class="surprise-box">
+      <div class="surprise-heart" aria-hidden="true"></div>
+      <h2 class="surprise-title gradient-text">老婆天下第一好！</h2>
+      <p class="surprise-sub">—— 近萧晴专属 · 独一无二 ——</p>
+      <p class="surprise-hint">点击任意位置关闭</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
