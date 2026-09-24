@@ -46,6 +46,8 @@
   <main id="main" hidden>
     <canvas id="fx-canvas" aria-hidden="true"></canvas>
 
+    <button id="music-btn" class="music-btn" type="button" title="播放 / 暂停音乐" aria-label="播放或暂停音乐">🎵</button>
+
     <div class="aurora" aria-hidden="true">
       <span class="blob b1"></span>
       <span class="blob b2"></span>
@@ -154,6 +156,8 @@
       <p class="surprise-hint">点击任意位置关闭</p>
     </div>
   </div>
+
+  <audio id="bgm" src="bleedinglove.mp3" loop preload="auto"></audio>
 
   <script src="script.js"></script>
 </body>

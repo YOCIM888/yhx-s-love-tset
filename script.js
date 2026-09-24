@@ -329,6 +329,10 @@ async function tryUnlock() {
   unlocking = true;
   unlockBtn.disabled = true;
   unlockBtn.textContent = '解锁中…';
+
+  // 紧贴用户手势触发播放，避免浏览器自动播放策略拦截
+  startBgm();
+
   await sleep(480); // 一点点悬念感
 
   const hash = await sha256(val);
@@ -336,6 +340,7 @@ async function tryUnlock() {
     unlock();
   } else {
     failCount++;
+    bgm.pause();
     const hints = [
       '咦，不对哦～ 再想想',
       '还是不对耶，悄悄说：和她有关系',
@@ -435,6 +440,22 @@ window.addEventListener('pointermove', (e) => {
   document.body.style.setProperty('--mx', (e.clientX / innerWidth - 0.5).toFixed(3));
   document.body.style.setProperty('--my', (e.clientY / innerHeight - 0.5).toFixed(3));
 });
+
+/* ================= 背景音乐 ================= */
+const bgm = $('#bgm');
+const musicBtn = $('#music-btn');
+bgm.volume = 0.65;
+
+function startBgm() {
+  bgm.play().catch(() => { /* 被拦截时用户可点右上角按钮手动开启 */ });
+}
+
+musicBtn.addEventListener('click', () => {
+  if (bgm.paused) startBgm();
+  else bgm.pause();
+});
+bgm.addEventListener('play', () => musicBtn.classList.add('playing'));
+bgm.addEventListener('pause', () => musicBtn.classList.remove('playing'));
 
 /* ================= 惊喜彩蛋 ================= */
 const surprise = $('#surprise');
