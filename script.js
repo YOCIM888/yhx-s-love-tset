@@ -1,5 +1,5 @@
 /* ==========================================================
-   致近萧晴 · 表白页交互
+   致近萧靳 · 表白页交互
    ========================================================== */
 'use strict';
 
@@ -8,7 +8,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const rand = (a, b) => a + Math.random() * (b - a);
 
 /* ================= SHA-256（哈希校验，不存明文） ================= */
-const PASSWORD_HASH = 'ab5ce270c5b24d91498f6b9193c1c4a187baed1a6ea49d08d9c711c8bdcfe7a9';
+const PASSWORD_HASH = '6a42340b8ddffe4115d63076108b67ec0e737abc5375577d2d09bd6571a42a11';
 
 async function sha256(text) {
   // 优先使用浏览器原生 Web Crypto（file:// 与 https 下均为安全上下文）
