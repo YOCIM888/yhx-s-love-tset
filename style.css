@@ -19,6 +19,9 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* 防止自定义 display 覆盖 hidden 属性导致透明遮罩拦截点击 */
+[hidden] { display: none !important; }
+
 html { scroll-behavior: smooth; }
 
 body {
